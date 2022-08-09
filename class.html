@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	    // class Person{
+	    // 	constructor(name,age){
+	    // 		this.name = name;
+	    // 		this.age = age;
+	    // 	}
+	    // }
+	    // Object.assign(Person.prototype,{//把两个函数塞一起
+	    // 	sayName(){
+	    // 		return this.name
+	    // 	},
+	    // 	sayAge(){
+	    // 		console.log(this.age);
+	    // 		return this.age
+	    // 	}
+	    // })
+	    // let p1 = new Person('小马哥',28);
+	    // p1.sayAge()
+	    //类的继承
+	    class Animal{
+            constructor(name,age){
+            	this.name = name;
+            	this.age = age;
+            }
+            sayName(){
+            	return this.name;
+            }
+            sayAge(){
+            	return this.age;
+            }
+}
+        class Dog extends Animal{
+        	constructor(name,age,color){
+        		super(name,age);
+        		this.color = color;
+        	}
+        }
+        	Object.assign(Dog.prototype,{
+            sayColor(){
+            	return `${this.name}是${this.age}岁了，他的颜色是${this.color}`
+            },
+            sayName(){
+            	return this.name + super.sayAge()+this.color;
+            }
+        	});
+        	let d1 = new Dog('小黄',28,'red');
+        	console.log(d1)
+        	console.log(d1.sayColor());
+        	console.log(d1.sayName());
+         
+
+			</script>
+		</body>
+		</html>

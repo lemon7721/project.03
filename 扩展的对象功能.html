@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		const name1 = '小马哥';
+		console.log(this);
+		const person = {
+			name1:name1,
+			sayName(){
+				console.log(this.name1);
+				console.log(this);
+			}
+		}
+		person.sayName();
+		let cart = {
+			wheel:4,
+			set(newVal){
+				if(newVal<this.wheel){
+					throw new Error('轮子数太少了')
+				}
+				this.wheel = newVal;
+			},
+		}
+		cart.set(6);//先把轮子赋值6，判断下轮子多不多，多的话就赋值，然后打印
+		console.log(cart.wheel)
+		let newObj = Object.assign({c:3},{a:1},{b:2});
+		console.log(newObj);
+</script>
+</body>
+</html>

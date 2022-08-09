@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function*load(){
+			loadUI();
+			yield showData();//这句话的意思就是说，我先遇到yield暂停，解析show函数，数据加载完成再遇到show里面的next，接着执行hideui
+			hideUI();
+		}
+		let itLoad = load();
+		itLoad.next();
+		function loadUI(){
+			console.log('加载load...页面');
+		}
+		function showData(){
+			setTimeout(() => {
+				console.log('数据加载完成');
+				itLoad.next();
+			},1000)
+		}
+		function hideUI(){
+			console.log('隐藏loading...页面');
+		}
+		
+	</script>
+</body>
+</html>

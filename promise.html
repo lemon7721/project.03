@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		let pro = new Promise (function(resolved,rejected){
+			let res = {
+				code:200,
+				data:{
+					name:'小马哥'
+				},
+				err:'失败了',
+			}
+			setTimeout(()=>{
+				if(res.code === 100){
+					resolved(res.data);
+				}
+				else{
+					rejected(res.err);
+				}
+			},1000);
+			
+		})
+		pro.then((val)=>{
+			console.log(val);
+		},(err)=>{
+			console.log(err);
+		});
+		//我怎么封装
+		function timeOut(ms){
+			return new Promise((resolved,rejected)=> {
+				setTimeout(()=>{
+					resolved('hello promise success!!')
+				},ms);
+			})
+		}
+		timeOut(2000).then((val)=>{
+			console.log(val);
+		})
+      // 修改第一个封装
+      let res = {
+      	data:{
+      		name:'小马哥'
+      	},
+      	err:'失败了',
+      }
+      function pro1(){
+      	return new Promise((resolved,rejected)=>{
+      		setTimeout(()=>{
+      			if(res.code === 100){
+      				resolved(res.data);
+      			}
+      			else{
+      				rejected(res.err);
+      			}
+      		},1000);
+      	})
+      }
+      pro1(res.code=100).then((val)=>{
+      	console.log(val);
+      	console.log(res)
+      },(err)=>{
+      	console.log(err);
+      });
+      let thenable = {
+  then: (resolve, reject) => {
+    resolve(thenable)
+  }
+}
+
+Promise.resolve(thenable) //这会造成一个死循环
+
+  </script>
+</body>
+</html>
